@@ -1,3 +1,3 @@
 .idea/
-code-grammar/module/__pycache__/
-code-grammar/net/__pycache__/
+grammar/module/__pycache__/
+net/__pycache__/
