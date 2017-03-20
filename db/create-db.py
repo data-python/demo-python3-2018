@@ -1,9 +1,16 @@
+# @Author: 骆金参
+# @Date:   2017-02-26T22:48:54+08:00
+# @Email:  1095947440@qq.com
+# @Filename: create-db.py
+# @Last modified by:   骆金参
+# @Last modified time: 2017-03-20T13:02:46+08:00
+
 #!/usr/bin/python3
 
 import pymysql
 
 # 打开数据库连接
-db = pymysql.connect("localhost","root","ljc578762","runoob" )
+db = pymysql.connect("localhost","root","root","runoob" )
 
 # 使用 cursor() 方法创建一个游标对象 cursor
 cursor = db.cursor()
