@@ -3,7 +3,7 @@
 import pymysql
 
 # 打开数据库连接
-db = pymysql.connect("localhost","root","ljc578762","runoob" )
+db = pymysql.connect("localhost","root","root","runoob" )
 
 # 使用cursor()方法获取操作游标
 cursor = db.cursor()
