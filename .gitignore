@@ -1,8 +1,7 @@
-.idea/
-grammar/module/__pycache__/
-net/__pycache__/
-module-test/__pycache__/
+.idea
+__pycache__
 
-tmp/*
+
+# 忽略临时文件
+tmp
 tmp-*
-

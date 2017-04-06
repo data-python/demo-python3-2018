@@ -1,3 +1,11 @@
+# @Author: 骆金参
+# @Date:   2017-02-26T21:22:39+08:00
+# @Email:  1095947440@qq.com
+# @Filename: people.py
+# @Last modified by:   骆金参
+# @Last modified time: 2017-04-01T15:35:53+08:00
+
+
 #!/usr/bin/python3
 
 #类定义

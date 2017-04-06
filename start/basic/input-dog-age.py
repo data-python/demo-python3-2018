@@ -8,11 +8,11 @@
 
 #!/usr/bin/python3
 
-age = int(input("请输入你家狗狗的年龄: "))
+age = int(input("请输入狗狗年龄: ")) # input -> int
 print("")  # 换行
 
 if age < 0:
-	print("你是在逗我吧!")
+	print("你在逗我!!!")
 elif age == 1:
 	print("相当于 14 岁的人。")
 elif age == 2:
@@ -21,4 +21,5 @@ elif age > 2:
 	human = 22 + (age - 2)*5
 	print("对应人类年龄: ", human)
 
-input("点击 enter 键退出")  #退出提示
+# enter退出 不带这句直接退出
+# input("点击 enter 键退出")  #退出

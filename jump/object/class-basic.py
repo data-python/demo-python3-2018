@@ -1,3 +1,11 @@
+# @Author: 骆金参
+# @Date:   2017-02-26T21:19:04+08:00
+# @Email:  1095947440@qq.com
+# @Filename: class-basic.py
+# @Last modified by:   骆金参
+# @Last modified time: 2017-04-01T15:35:42+08:00
+
+
 #!/usr/bin/python3
 
 class MyClass:
