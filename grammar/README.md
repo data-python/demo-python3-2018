@@ -5,15 +5,24 @@
 ```
 Atom + (atom python run 插件)
 F5运行
-
-
 ```
 
-* basic
+* 基础
   * [python-100](http://www.runoob.com/python/python-100-examples.html)
 
 ```
-// 数据类型
 
-// 函数
+```
+
+* 字符串/正则表达式
+
+```
+pip install  pymongo
+可以安装robomongo 这一图形化管理工具
+
+show dbs
+use mean
+db['article'].find() // 即可查看
+
+
 ```
