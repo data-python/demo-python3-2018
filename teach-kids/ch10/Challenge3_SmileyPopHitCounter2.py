@@ -50,15 +50,15 @@ class Smiley(pygame.sprite.Sprite):
             self.yvel = -self.yvel*0.95
 
 while keep_going:
-    for event in pygame.event.get(): 
-        if event.type == pygame.QUIT: 
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
             keep_going = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_F1: # F1 = cheat/pop all smileys
                 count_popped += len(sprite_list)
                 sprite_list = pygame.sprite.Group() # clear sprite_list
                 pop.play()
-                 
+
         if event.type == pygame.MOUSEBUTTONDOWN:
             if pygame.mouse.get_pressed()[0]: # regular left mouse button, draw
                 mousedown = True
@@ -102,7 +102,7 @@ while keep_going:
     hit_text_rect.centerx = screen.get_rect().centerx
     hit_text_rect.y = 550
     screen.blit (hit_text, hit_text_rect)
-    
+
     pygame.display.update()
     if mousedown:
         speedx = random.randint(-5, 5)
@@ -110,5 +110,5 @@ while keep_going:
         newSmiley = Smiley(pygame.mouse.get_pos(),speedx,speedy)
         sprite_list.add(newSmiley)
         count_smileys += 1
-        
+
 pygame.quit()

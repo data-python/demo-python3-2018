@@ -27,7 +27,7 @@ class Smiley(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.image = pic
         self.scale = random.randrange(10,100)
-        self.image = pygame.transform.scale(self.image, 
+        self.image = pygame.transform.scale(self.image,
                                             (self.scale,self.scale))
         self.rect = self.image.get_rect()
         self.pos = pos
@@ -43,15 +43,15 @@ class Smiley(pygame.sprite.Sprite):
         if self.rect.y <= 0 or self.rect.y > screen.get_height() - self.scale:
             self.yvel = -self.yvel
 while keep_going:
-    for event in pygame.event.get(): 
-        if event.type == pygame.QUIT: 
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
             keep_going = False
         if event.type == pygame.MOUSEBUTTONDOWN:
             if pygame.mouse.get_pressed()[0]:    # Left mouse button, draw
                 mousedown = True
             elif pygame.mouse.get_pressed()[2]:  # Right mouse button, pop
                 pos = pygame.mouse.get_pos()
-                clicked_smileys = [s for s in sprite_list if 
+                clicked_smileys = [s for s in sprite_list if
                                    s.rect.collidepoint(pos)]
                 sprite_list.remove(clicked_smileys)
                 if len(clicked_smileys) > 0:
@@ -68,7 +68,7 @@ while keep_going:
     if (count_smileys > 0):
         draw_string += " - Percent: "
         draw_string += str(round(count_popped/count_smileys*100, 1))
-        draw_string += "%" 
+        draw_string += "%"
     text = font.render(draw_string, True, WHITE)
     text_rect = text.get_rect()
     text_rect.centerx = screen.get_rect().centerx

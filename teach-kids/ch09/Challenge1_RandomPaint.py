@@ -11,7 +11,7 @@ mousedown = False
 
 while keepGoing:                        # game loop
     for event in pygame.event.get():    # handling events
-        if event.type == pygame.QUIT: 
+        if event.type == pygame.QUIT:
             keepGoing = False
         if event.type == pygame.MOUSEBUTTONDOWN:
             mousedown = True
@@ -22,5 +22,5 @@ while keepGoing:                        # game loop
         randcolor = (random.randrange(0,255),random.randrange(0,255),random.randrange(0,255))
         pygame.draw.circle(screen, randcolor, spot, radius)
     pygame.display.update()             # update display
-        
+
 pygame.quit()                           # exit

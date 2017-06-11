@@ -41,8 +41,8 @@ class Smiley(pygame.sprite.Sprite):
 
 while keep_going:
     pygame.mouse.get_rel()
-    for event in pygame.event.get(): 
-        if event.type == pygame.QUIT: 
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
             keep_going = False
         if event.type == pygame.MOUSEBUTTONDOWN:
             mousedown = True
@@ -60,5 +60,5 @@ while keep_going:
             speedy = random.randrange(1,5)
         newSmiley = Smiley(pygame.mouse.get_pos(),speedx,speedy)
         sprite_list.add(newSmiley)
-        
+
 pygame.quit ()

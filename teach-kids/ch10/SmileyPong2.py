@@ -24,8 +24,8 @@ points = 0
 lives = 5
 font = pygame.font.SysFont("Times", 24)
 while keepGoing:    # Game loop
-    for event in pygame.event.get(): 
-        if event.type == pygame.QUIT: 
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
             keepGoing = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_F1:    # F1 = New Game
@@ -35,10 +35,10 @@ while keepGoing:    # Game loop
                 picy = 0
                 speedx = 5
                 speedy = 5
-            
+
     picx += speedx
     picy += speedy
-    
+
     if picx <= 0 or picx >= 700:
         speedx = -speedx * 1.1
     if picy <= 0:
@@ -48,7 +48,7 @@ while keepGoing:    # Game loop
         speedy = -5
         speedx = 5
         picy = 499
-    screen.fill(BLACK)    
+    screen.fill(BLACK)
     screen.blit(pic, (picx, picy))
     # Draw paddle
     paddlex = pygame.mouse.get_pos()[0]
@@ -64,11 +64,11 @@ while keepGoing:    # Game loop
     # Draw text on screen
     draw_string = "Lives: " + str(lives) + " Points: " + str(points)
     # Check whether the game is over
-    if lives < 1:   
+    if lives < 1:
         speedx = speedy = 0
         draw_string = "Game Over. Your score was: " + str(points)
         draw_string += ". Press F1 to play again. "
-        
+
     text = font.render(draw_string, True, WHITE)
     text_rect = text.get_rect()
     text_rect.centerx = screen.get_rect().centerx
@@ -76,5 +76,5 @@ while keepGoing:    # Game loop
     screen.blit(text, text_rect)
     pygame.display.update()
     timer.tick(60)
-    
+
 pygame.quit()       # Exit
