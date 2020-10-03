@@ -26,14 +26,15 @@
 
 
 # 不定长参数
-def printinfo(arg1, *vartuple):
-    "打印任何传入的参数"
+def print_info(arg1, *vartuple):
+    """打印任何传入的参数"""
     print("输出: ")
     print(arg1)
     for var in vartuple:
         print(var)
-    return;
+    return
+
 
 # 调用printinfo 函数
-printinfo(10);
-printinfo(70, 60, 50);
+print_info(10)
+print_info(70, 60, 50)

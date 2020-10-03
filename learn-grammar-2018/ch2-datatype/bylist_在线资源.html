@@ -1,8 +1,6 @@
-
-
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -68,262 +66,7 @@ function handlerFunction(req){
         <td class="bg_whlie">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 		
-         <tr>
-<td align="center">
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td width="290" align="center" valign="top" class="pad_t17"><img src="/templates/images/logo.jpg" width="261" height="51" /></td>
-        <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td width="237" align="right" class="pad_r20 pad_t20"><script>
-function tick() {
-var hours, minutes, seconds, xfile;
-var intHours, intMinutes, intSeconds;
-var today, theday;
-today = new Date();
-function initArray(){
-this.length=initArray.arguments.length
-for(var i=0;i<this.length;i++)
-this[i+1]=initArray.arguments[i] }
-var d=new initArray(
-"星期日",
-"星期一",
-"星期二",
-"星期三",
-"星期四",
-"星期五",
-"星期六");
-//theday = today.getYear()+"年" + [today.getMonth()+1]+"月" +today.getDate() + d[today.getDay()+1];
-theday = today.getFullYear()+"年" + [today.getMonth()+1]+"月" +today.getDate() + d[today.getDay()+1];
-intHours = today.getHours();
-intMinutes = today.getMinutes();
-intSeconds = today.getSeconds();
-
-if (intHours == 0) {
-hours = "12:";
-xfile = "午夜";
-} else if (intHours < 12) {
-hours = intHours+":";
-xfile = "上午";
-} else if (intHours == 12) {
-hours = "12:";
-xfile = "正午";
-} else {
-intHours = intHours - 12;
-hours = intHours + ":";
-xfile = "下午";
-}
-if (intMinutes < 10) {
-minutes = "0"+intMinutes+":";
-} else {
-minutes = intMinutes+":";
-}
-if (intSeconds < 10) {
-seconds = "0"+intSeconds+" ";
-} else {
-seconds = intSeconds+" ";
-}
-timeString = theday+" "+xfile+" "+hours+minutes+seconds;
-document.getElementById("Clock").innerHTML = timeString;
-window.setTimeout("tick();", 100);
-}
-window.onload = tick;
-
-function getXmlHttpObject(){
-	var xmlHttp = null;
-	try{
-		//Firefox,Opera8.0+,Safari
-		xmlHttp = new XMLHttpRequest();
-	}catch(e){
-		//Internet Explorer
-		try{
-			xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
-		}catch(e){
-			xmlHttp = new ActiveXobject("Microsoft.XMLHTTP");
-		}
-	}
-	return xmlHttp;
-}
-
-function getloginoutText(url,o){
-	var temp = "";
-	xmlHttp = getXmlHttpObject();
-	if(xmlHttp==null){
-		alert('浏览器不支持ajax');
-	}
-	xmlHttp.onreadystatechange=stateChanged; 
-	xmlHttp.open("GET",url,true); 
-	xmlHttp.send(null); 
-		function stateChanged(){
-			if (xmlHttp.readyState==4){	
-			    temp =  xmlHttp.responseText;
-				var tempdiv = document.getElementById(o);
-				tempdiv.innerHTML = temp;
-			}
-		}
-}
-function seeloginout(str){
-	var url = "/module/membercenter/topajaxloginout.jsp?time="+new Date().getTime();;
-	getloginoutText(url,str);
-}
-</script>
-                <span id="Clock"></span></td>
-              <td width="467" class="pad_t20"><table width="100%" height="17" border="0" cellpadding="0" cellspacing="0">
-                  <tr>
-                    <td align="left" class="linef12b_blue hxjy_line bod_r_left"><ul>
-                        <li><a target="_bank" href="http://www.hxedu.com.cn">华信教育资源网</a></li>
-                        <li><a target="_bank" href="http://www.hxpress.com.cn">华信数字出版网</a></li>
-                        <li><a target="_bank" href=""></a></li>
-                      </ul></td>
-                    <td width="90" align="left" class="eng_lie linef12b_blue"><a target="_blank" href="/ens/index.shtml">ENGLISH</a></td>
-                  </tr>
-                </table></td>
-            </tr>
-          </table></td>
-          </tr>
-          <tr>
-            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td align="right">
-              <div class="div_buy_line">
-              <div id="Layer3" style="display:none;" onmouseout="showOutDivgwc()" onmousemove="showmoveDivgwc()"  class="zjxz_ys2 f12_grey" >
-</div>
-<div id="Layer4" style="display:none;" onmouseout="showOutDivzxjl()" onmousemove="showmoveDivzxjl()"  class="zjxz_ys2 f12_grey">
-
-<a href='tencent://message/?uin=2473231267&Menu=yes'>购书咨询</a><br/><hr/>
-
-<a href='tencent://message/?uin=1245913815&Menu=yes'>教学课件</a><br/><hr/>
-
-<a href='tencent://message/?uin=195132426&Menu=yes'>教材咨询</a><br/><hr/>
-
-
-</div>
-<div>
-              <table width="100%" height="38" border="0" cellpadding="0" cellspacing="0">
-                  <tr>
-                    <td width="250" align="right" class="f12_orange linkf12_orange">
-                    <!-- 这里是登陆注册 
-                    [<iframe src="/ch4-module/membercenter/membertoplogin.jsp" style="width:200px;overflow:hidden; border:0;" height="20" frameborder="0" scrolling="No"></iframe>]
-                    -->
-                    	<span id="loginout"></span>
-                    	<script type="text/javascript">
-                    	setTimeout("seeloginout('loginout')",500) ;
-                    	</script></td>
-                    <td width="80" align="right" class="gwc_line linkf12_wryh"><a href="/module/goods/shoppingcart.jsp" onmousemove="showgwc()" onmouseout="showoutgwc()">购物车</a></td>
-                    <td width="86" align="right" class="hyzx_line linkf12_wryh"><a href="/module/membercenter/hyzx.jsp">会员中心</a></td>
-                    <td width="90" align="right" class="zxzx_line linkf12_wryh"><a href="#" onmousemove="showzxjl()" onmouseout="showoutzxjl()">在线咨询</a></td>
-                    <td width="16" align="right"><img src="/templates/images/zxzx_h_line.jpg" width="11" height="9" /></td>
-                    <td width="86" align="right" class="wzdl_line linkf12_wryh"><a href="/wzdh/index.shtml">网站导航</a></td>
-					<td align="right" width="86" class="linkf12_wryh pad_r10 sj_line"><a href="http://wap.phei.com.cn" target="_blank">手机PHEI</a></td>
-                  </tr>
-                </table>
-				</div>
-               </div> 
-              </td>
-            </tr>
-          </table></td>
-          </tr>
-        </table></td>
-      </tr>
-    </table>
-<script language="javascript">
-	function showgwc(){
-		getgwcajax();
-		document.getElementById("Layer3").style.display="block";
-	}
-	function showoutgwc(){
-		document.getElementById("Layer3").style.display="none";
-	}
-	function showmoveDivgwc(){
-	  //getgwcajax();
-	  document.getElementById("Layer3").style.display="block";
-	}
-	function showOutDivgwc(){
-	document.getElementById("Layer3").style.display="none";
-	}
-	//在线咨询
-	function showzxjl(){
-		//getzxzxajax();
-		document.getElementById("Layer4").style.display="block";
-	}
-	function showoutzxjl(){
-		document.getElementById("Layer4").style.display="none";
-	}
-	function showmoveDivzxjl(){
-		//getzxzxajax();
-		document.getElementById("Layer4").style.display="block";
-	}
-	function showOutDivzxjl(){
-		document.getElementById("Layer4").style.display="none";
-	}
-	
-	function getzxzxajax(){
-
-	var url = "/module/goods/manager/GetZxzx.jsp?time="+new Date().getTime();
-	var str="Layer4";
-	//getAjaxZxzx(url,str);
-}
-function getAjaxZxzx(url,o){
-	var temp = "";
-	xmlHttp = getXmlHttpObject();
-	if(xmlHttp==null){
-		alert('不支持ajax');
-	}
-	xmlHttp.onreadystatechange=stateChanged; 
-	xmlHttp.open("GET",url,true); 
-	xmlHttp.send(null); 
-	function stateChanged(){
-		if (xmlHttp.readyState==4){	
-			if(o=="Layer4"){
-			 var t1 = "";
-			 var temp1 =  xmlHttp.responseText;
-			 
-						t1 = temp1;
-				//	alert(t1);
-				var tempdiv = document.getElementById(o);
-				tempdiv.innerHTML = t1;
-				
-			}
-		}
-	}
-}
-
-function getAjaxGwc(url,o){
-	var temp = "";
-	xmlHttp = getXmlHttpObject();
-	if(xmlHttp==null){
-		alert('不支持ajax');
-	}
-	xmlHttp.onreadystatechange=stateChanged; 
-	xmlHttp.open("GET",url,true); 
-	xmlHttp.send(null); 
-	function stateChanged(){
-		if (xmlHttp.readyState==4){	
-			if(o=="Layer3"){
-			 var t1 = "";
-			 var temp1 =  xmlHttp.responseText;
-			 
-						t1 = temp1;
-				
-				var tempdiv = document.getElementById(o);
-				tempdiv.innerHTML = t1;     
-			}
-		}
-	}
-}
-
-function getgwcajax(){
-
-	var url = "/module/goods/manager/GetGwc.jsp?time="+new Date().getTime();
-	var str="Layer3";
-	getAjaxGwc(url,str);
-}
-</script>
-</td>
-</tr>
-
+        
 		 
        </table>
 		<table width="982" border="0" cellspacing="0" cellpadding="0">
@@ -341,7 +84,7 @@ function getgwcajax(){
             <li class="nav_qt"><a href="/module/dealer/jxs_home_before.jsp">经销商园地</a></li>
             <li class="nav_qt"><a href="/module/contribution/wstg_index.jsp">网上投稿</a></li>
 			<!--
-            <li class="nav_qt"><a href="/ch4-module/goods/tslz_index.jsp">在线读书</a></li>
+            <li class="nav_qt"><a href="/module/goods/tslz_index.jsp">在线读书</a></li>
 			-->
 			<li class="nav_qt"><a target="_bank" href="http://drm.hxpress.com.cn">在线读书</a></li>
             <li class="nav_qt"><a href="/module/zygl/zxzyindex.jsp">在线资源</a></li>
@@ -514,7 +257,7 @@ function getgwcajax(){
               </td>
               <td width="54" align="left"><img onclick="searchsub()" src="/templates/images/but_search.jpg" width="48" height="19" border="0" /></td>
               <td width="91" align="left"><a href="/module/goods/gjsearch.jsp" target="_blank"><img src="/templates/images/but_gjss.jpg" width="68" height="19" border="0" /></a></td>
-              <td width="277" align="left" class="f12_orange linkf12_orange"><span class="f14b_grey">热搜关键字：</span><a href='http://www.phei.com.cn/module/zygl/zxzyindex.jsp'><font color=#FF0000><strong>财经法规模拟卷勘误表</strong></font></a>&nbsp;
+              <td width="277" align="left" class="f12_orange linkf12_orange"><span class="f14b_grey">热搜关键字：</span><a href='https://www.phei.com.cn/module/goods/wssd_content.jsp?bookid=52173'><font color=#FF0000><strong>Spring Cloud与Docker高并发微服务架构设计实施</strong></font></a>&nbsp;<a href='https://www.phei.com.cn/module/goods/wssd_content.jsp?bookid=52745'><font color=#FF0000><strong>向诸葛亮借智慧</strong></font></a>&nbsp;
 </td>
               <td width="85" align="left" class="wswz_line f12_black"><a href="/lxwm/2010-11-24/74.shtml">我社位置</a></td>
             <td align="left" class="sjxz_line f12_black"><a href="/module/zygl/moreresourcelist.jsp?sort=Marc%E6%95%B0%E6%8D%AE">MARC数据下载</a></td>
@@ -540,7 +283,7 @@ function getgwcajax(){
           </tr>
           <tr>
             <td align="center" valign="top" class="bod_all_blue bod_no_top pad_t_bot10">
-<!--<iframe name="frame_content" id="frame_content" onload="this.height=100" src="/ch4-module/zygl/manager/html/resourcesortlist.html" style="position:relative; left:0;top:0px; width:100%;border:0;" allowtransparency=true frameborder="0" scrolling="no"></iframe>	-->
+<!--<iframe name="frame_content" id="frame_content" onload="this.height=100" src="/module/zygl/manager/html/resourcesortlist.html" style="position:relative; left:0;top:0px; width:100%;border:0;" allowtransparency=true frameborder="0" scrolling="no"></iframe>	-->
 
 <style type="text/css">
 <!--
@@ -633,7 +376,7 @@ function getgwcajax(){
           </tr>
           <tr>
             <td align="center" valign="top" class="bod_orange1 pad_t7_jr pad_t_bot8">
-		<!--	 <iframe name="frame_content1" id="frame_content1" onload="this.height=100" src="/ch4-module/zygl/manager/html/downloadlist.html" style="position:relative; left:0;top:0px; width:100%;border:0;" allowtransparency=true frameborder="0" scrolling="no"></iframe>-->
+		<!--	 <iframe name="frame_content1" id="frame_content1" onload="this.height=100" src="/module/zygl/manager/html/downloadlist.html" style="position:relative; left:0;top:0px; width:100%;border:0;" allowtransparency=true frameborder="0" scrolling="no"></iframe>-->
 			 
 <style>
 <!--
@@ -743,90 +486,6 @@ function getgwcajax(){
 	
 	<table width="502" border="0" cellspacing="0" cellpadding="0" class="bod_grey_bot">
                 <tr>
-                  <td align="left" class="f12_black line_h36 zxzy_line2"><span class="f12b_blue1">【教材书目】</span><a href="javascript:iscunzai('电子工业出版社2017年秋季本科研究生引进版教材书目.zip');">电子工业出版社2017年秋季本科研究生引进版教材书目</a></td>
-                  <td width="50" align="left" class="zxzy_line1 linef12b_blue1 line_h36"><a href="javascript:iscunzai('电子工业出版社2017年秋季本科研究生引进版教材书目.zip');">下载</a>
-				  
-				  
-				  </td>
-                </tr>
-              </table>
-			 
-	<!--/newResourcelist--><!--newResourcelist?shownum=13-->
-	
-	<table width="502" border="0" cellspacing="0" cellpadding="0" class="bod_grey_bot">
-                <tr>
-                  <td align="left" class="f12_black line_h36 zxzy_line2"><span class="f12b_blue1">【教材书目】</span><a href="javascript:iscunzai('电子工业出版社2017年秋季中职计算机教材书目.zip');">电子工业出版社2017年秋季中职计算机教材书目</a></td>
-                  <td width="50" align="left" class="zxzy_line1 linef12b_blue1 line_h36"><a href="javascript:iscunzai('电子工业出版社2017年秋季中职计算机教材书目.zip');">下载</a>
-				  
-				  
-				  </td>
-                </tr>
-              </table>
-			 
-	<!--/newResourcelist--><!--newResourcelist?shownum=13-->
-	
-	<table width="502" border="0" cellspacing="0" cellpadding="0" class="bod_grey_bot">
-                <tr>
-                  <td align="left" class="f12_black line_h36 zxzy_line2"><span class="f12b_blue1">【教材书目】</span><a href="javascript:iscunzai('电子工业出版社2017年秋季中职机电类、电子类教材书目.zip');">电子工业出版社2017年秋季中职机电类、电子类教材书目</a></td>
-                  <td width="50" align="left" class="zxzy_line1 linef12b_blue1 line_h36"><a href="javascript:iscunzai('电子工业出版社2017年秋季中职机电类、电子类教材书目.zip');">下载</a>
-				  
-				  
-				  </td>
-                </tr>
-              </table>
-			 
-	<!--/newResourcelist--><!--newResourcelist?shownum=13-->
-	
-	<table width="502" border="0" cellspacing="0" cellpadding="0" class="bod_grey_bot">
-                <tr>
-                  <td align="left" class="f12_black line_h36 zxzy_line2"><span class="f12b_blue1">【教材书目】</span><a href="javascript:iscunzai('电子工业出版社2017年秋季中职轨道交通类、财经类、电子商务类、物流类、旅游类、教育类材书目.zip');">电子工业出版社2017年秋季中职轨道交通类、财经类、电子商务类、物流类、旅游类、教育类材书目</a></td>
-                  <td width="50" align="left" class="zxzy_line1 linef12b_blue1 line_h36"><a href="javascript:iscunzai('电子工业出版社2017年秋季中职轨道交通类、财经类、电子商务类、物流类、旅游类、教育类材书目.zip');">下载</a>
-				  
-				  
-				  </td>
-                </tr>
-              </table>
-			 
-	<!--/newResourcelist--><!--newResourcelist?shownum=13-->
-	
-	<table width="502" border="0" cellspacing="0" cellpadding="0" class="bod_grey_bot">
-                <tr>
-                  <td align="left" class="f12_black line_h36 zxzy_line2"><span class="f12b_blue1">【教材书目】</span><a href="javascript:iscunzai('电子工业出版社2017年秋季中职公共课、文化素养类、五年制高职教材书目.zip');">电子工业出版社2017年秋季中职公共课、文化素养类、五年制高职教材书目</a></td>
-                  <td width="50" align="left" class="zxzy_line1 linef12b_blue1 line_h36"><a href="javascript:iscunzai('电子工业出版社2017年秋季中职公共课、文化素养类、五年制高职教材书目.zip');">下载</a>
-				  
-				  
-				  </td>
-                </tr>
-              </table>
-			 
-	<!--/newResourcelist--><!--newResourcelist?shownum=13-->
-	
-	<table width="502" border="0" cellspacing="0" cellpadding="0" class="bod_grey_bot">
-                <tr>
-                  <td align="left" class="f12_black line_h36 zxzy_line2"><span class="f12b_blue1">【教材书目】</span><a href="javascript:iscunzai('电子工业出版社2017年秋季高职汽车类教材书目.zip');">电子工业出版社2017年秋季高职汽车类教材书目</a></td>
-                  <td width="50" align="left" class="zxzy_line1 linef12b_blue1 line_h36"><a href="javascript:iscunzai('电子工业出版社2017年秋季高职汽车类教材书目.zip');">下载</a>
-				  
-				  
-				  </td>
-                </tr>
-              </table>
-			 
-	<!--/newResourcelist--><!--newResourcelist?shownum=13-->
-	
-	<table width="502" border="0" cellspacing="0" cellpadding="0" class="bod_grey_bot">
-                <tr>
-                  <td align="left" class="f12_black line_h36 zxzy_line2"><span class="f12b_blue1">【教材书目】</span><a href="javascript:iscunzai('电子工业出版社2017年秋季高职理工类教材书目.zip');">电子工业出版社2017年秋季高职理工类教材书目</a></td>
-                  <td width="50" align="left" class="zxzy_line1 linef12b_blue1 line_h36"><a href="javascript:iscunzai('电子工业出版社2017年秋季高职理工类教材书目.zip');">下载</a>
-				  
-				  
-				  </td>
-                </tr>
-              </table>
-			 
-	<!--/newResourcelist--><!--newResourcelist?shownum=13-->
-	
-	<table width="502" border="0" cellspacing="0" cellpadding="0" class="bod_grey_bot">
-                <tr>
                   <td align="left" class="f12_black line_h36 zxzy_line2"><span class="f12b_blue1">【教材书目】</span><a href="javascript:iscunzai('电子工业出版社2017年秋季高职计算机类教材书目.zip');">电子工业出版社2017年秋季高职计算机类教材书目</a></td>
                   <td width="50" align="left" class="zxzy_line1 linef12b_blue1 line_h36"><a href="javascript:iscunzai('电子工业出版社2017年秋季高职计算机类教材书目.zip');">下载</a>
 				  
@@ -889,6 +548,90 @@ function getgwcajax(){
                 <tr>
                   <td align="left" class="f12_black line_h36 zxzy_line2"><span class="f12b_blue1">【书内资源】</span><a href="javascript:iscunzai('31024.zip');">31024苹果OS X Yosemite Server全解析</a></td>
                   <td width="50" align="left" class="zxzy_line1 linef12b_blue1 line_h36"><a href="javascript:iscunzai('31024.zip');">下载</a>
+				  
+				  
+				  </td>
+                </tr>
+              </table>
+			 
+	<!--/newResourcelist--><!--newResourcelist?shownum=13-->
+	
+	<table width="502" border="0" cellspacing="0" cellpadding="0" class="bod_grey_bot">
+                <tr>
+                  <td align="left" class="f12_black line_h36 zxzy_line2"><span class="f12b_blue1">【重点书目】</span><a href="javascript:iscunzai('201701zhongdian.zip');">2017年第1期重点书目</a></td>
+                  <td width="50" align="left" class="zxzy_line1 linef12b_blue1 line_h36"><a href="javascript:iscunzai('201701zhongdian.zip');">下载</a>
+				  
+				  
+				  </td>
+                </tr>
+              </table>
+			 
+	<!--/newResourcelist--><!--newResourcelist?shownum=13-->
+	
+	<table width="502" border="0" cellspacing="0" cellpadding="0" class="bod_grey_bot">
+                <tr>
+                  <td align="left" class="f12_black line_h36 zxzy_line2"><span class="f12b_blue1">【勘误表】</span><a href="javascript:iscunzai('关于《大数据》一书的勘误声明.doc');">30430关于《大数据》一书的勘误声明</a></td>
+                  <td width="50" align="left" class="zxzy_line1 linef12b_blue1 line_h36"><a href="javascript:iscunzai('关于《大数据》一书的勘误声明.doc');">下载</a>
+				  
+				  
+				  </td>
+                </tr>
+              </table>
+			 
+	<!--/newResourcelist--><!--newResourcelist?shownum=13-->
+	
+	<table width="502" border="0" cellspacing="0" cellpadding="0" class="bod_grey_bot">
+                <tr>
+                  <td align="left" class="f12_black line_h36 zxzy_line2"><span class="f12b_blue1">【可供书目】</span><a href="javascript:iscunzai('201701kegong.zip');">2017年第1期可供书目</a></td>
+                  <td width="50" align="left" class="zxzy_line1 linef12b_blue1 line_h36"><a href="javascript:iscunzai('201701kegong.zip');">下载</a>
+				  
+				  
+				  </td>
+                </tr>
+              </table>
+			 
+	<!--/newResourcelist--><!--newResourcelist?shownum=13-->
+	
+	<table width="502" border="0" cellspacing="0" cellpadding="0" class="bod_grey_bot">
+                <tr>
+                  <td align="left" class="f12_black line_h36 zxzy_line2"><span class="f12b_blue1">【书内资源】</span><a href="javascript:iscunzai('29844.rar');">29844Verilog传奇——从电路出发的HDL代码设计</a></td>
+                  <td width="50" align="left" class="zxzy_line1 linef12b_blue1 line_h36"><a href="javascript:iscunzai('29844.rar');">下载</a>
+				  
+				  
+				  </td>
+                </tr>
+              </table>
+			 
+	<!--/newResourcelist--><!--newResourcelist?shownum=13-->
+	
+	<table width="502" border="0" cellspacing="0" cellpadding="0" class="bod_grey_bot">
+                <tr>
+                  <td align="left" class="f12_black line_h36 zxzy_line2"><span class="f12b_blue1">【程序源代码】</span><a href="javascript:iscunzai('28789.rar');">28789-反射面天线理论及实用CAD程序集</a></td>
+                  <td width="50" align="left" class="zxzy_line1 linef12b_blue1 line_h36"><a href="javascript:iscunzai('28789.rar');">下载</a>
+				  
+				  
+				  </td>
+                </tr>
+              </table>
+			 
+	<!--/newResourcelist--><!--newResourcelist?shownum=13-->
+	
+	<table width="502" border="0" cellspacing="0" cellpadding="0" class="bod_grey_bot">
+                <tr>
+                  <td align="left" class="f12_black line_h36 zxzy_line2"><span class="f12b_blue1">【勘误表】</span><a href="javascript:iscunzai('20059《太阳能光伏发电应用技术（第2版）》勘误表(2016.5).docx');">20059《太阳能光伏发电应用技术（第2版）》勘误表(2016.5)</a></td>
+                  <td width="50" align="left" class="zxzy_line1 linef12b_blue1 line_h36"><a href="javascript:iscunzai('20059《太阳能光伏发电应用技术（第2版）》勘误表(2016.5).docx');">下载</a>
+				  
+				  
+				  </td>
+                </tr>
+              </table>
+			 
+	<!--/newResourcelist--><!--newResourcelist?shownum=13-->
+	
+	<table width="502" border="0" cellspacing="0" cellpadding="0" class="bod_grey_bot">
+                <tr>
+                  <td align="left" class="f12_black line_h36 zxzy_line2"><span class="f12b_blue1">【重点书目】</span><a href="javascript:iscunzai('201602zhongdian.zip');">2016年第2期重点书目</a></td>
+                  <td width="50" align="left" class="zxzy_line1 linef12b_blue1 line_h36"><a href="javascript:iscunzai('201602zhongdian.zip');">下载</a>
 				  
 				  
 				  </td>
@@ -1130,31 +873,7 @@ function getgwcajax(){
       </tr>
     </table></td>
   </tr>
-     <tr>
-  <td align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td align="center"><table width="960" border="0" cellspacing="0" cellpadding="0" class="mar_t10">
-            <tr>
-              <td align="center" class="bot_nav_bg linkf12_whlie f12_whlie"><a href="/qkjs/2011-12-12/435.shtml">期刊介绍</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/lxwm/2010-11-24/74.shtml">联系我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/module/zpgl/jobappview.jsp">人才招聘</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://wap.phei.com.cn" target="_blank">手机PHEI</a>|&nbsp;&nbsp;<a href="http://e.weibo.com/dzgy" target="_blank">官方微博</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/wzdh/index.shtml">网站导航</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/wzbz/2010-12-23/177.shtml">网站帮助</a></td>
-            </tr>
-          </table></td>
-      </tr>
-    </table></td>
-</tr>
-<tr>
-  <td align="left" class="pad_t15 pad_bot20"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td align="center" class="line_h21">电子工业出版社地址：北京市万寿路南口金家村288号 华信大厦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;服务电话：010-88258888 88254114</td>
-      </tr>
-      <tr>
-        <td align="center" class="f12_black line_h21"><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11030724</a>&nbsp;&nbsp;Copyright 2006-2012&nbsp;<span class="f12b_black">电子工业出版社</span>&nbsp;&nbsp;All rights reserved</td>
-      </tr>
-       <tr>
-        <td align="center" class="f12_black line_h21">出版物经营许可证：<a href="http://www.phei.com.cn/jyxkz.jpg" target="_blank">新出发京批字第版130001号</a></td>
-      </tr>
-    </table></td>
-</tr>
-
+    
 </table>
 		</td>
       </tr>
@@ -1166,12 +885,11 @@ sendFormasName('计算机');
 </script>
 <script type="text/javascript">
 function tiaozhuan(str,num){
-//location.href="/ch4-module/publishinghouse/moresalseranking.jsp?classify="+encodeURIComponent(str);
+//location.href="/module/publishinghouse/moresalseranking.jsp?classify="+encodeURIComponent(str);
 location.href="/module/publishinghouse/moresalseranking.jsp?num="+num+"&classify="+encodeURI(str);
 }
 </script>
 <map name="Map" id="Map"><area shape="rect" coords="113,32,202,113" href="#" /><area shape="rect" coords="218,31,307,113" href="#" /><area shape="rect" coords="321,30,415,112" href="#" /><area shape="rect" coords="427,31,519,112" href="#" /></map></body>
 </html>
 
-
-
+

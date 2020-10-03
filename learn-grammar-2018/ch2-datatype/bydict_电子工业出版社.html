@@ -1,0 +1,1112 @@
+ï»¿<!DOCTYPE HTML>
+<html ng-app="topDivApp"  ng-controller="topDivCtrl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1" />
+<title>çµå­å·¥ä¸åºçç¤¾æéå¬å¸</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link rel="shortcut icon" href="#" />
+<link href="/templates/stylesheets/global.css" rel="stylesheet" />
+<link href="/templates/stylesheets/web_base.css" rel="stylesheet" />
+<script src="/templates/javascript/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="/templates/javascript/ajax.js" type="text/javascript"></script>
+<script src="/templates/javascript/page_script.js" type="text/javascript"></script>
+<script src="/templates/javascript/angular/angular.min.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+function createXMLHttpRequest() {
+    if (window.XMLHttpRequest) {
+         //Mozilla æµè§å¨ 
+         XMLHttpReq = new XMLHttpRequest();
+      } else{
+          // IEæµè§å¨
+          if (window.ActiveXObject) {
+            try {
+                   XMLHttpReq = new ActiveXObject("Msxml2.XMLHTTP");
+                }catch (e) {
+                   try {
+                          XMLHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+                       }catch (e) { }
+                }
+           }
+      }
+  } 
+function suggest()
+{
+     var key = document.getElementById("searchKey").value;
+		var newstr = encodeURIComponent(key);
+     sendRequest("/module/goods/searchajax.jsp?searchKey="+newstr);
+}
+function showSearchResult(data){
+	console.info(data);
+}
+function sendRequest(url) {
+    createXMLHttpRequest();
+    XMLHttpReq.open("GET", url, true);
+    //æå®ååºå½æ°
+    XMLHttpReq.onreadystatechange = handleResponse;
+    // åéè¯·æ±
+    XMLHttpReq.send(null); 
+}   
+function clearTable()
+{
+    var content = document.getElementById("content");
+    while(content.childNodes.length>0)
+    {
+        content.removeChild(content.childNodes[0]);
+    }    
+    
+}
+function handleResponse() {
+    // å¤æ­å¯¹è±¡ç¶æ
+    if (XMLHttpReq.readyState == 4) { 
+        // ä¿¡æ¯å·²ç»æåè¿åï¼å¼å§å¤çä¿¡æ¯
+       if (XMLHttpReq.status == 200) { 
+            clearTable();
+            var out = "";
+            var res = XMLHttpReq.responseXML;
+			//alert("res="+res);
+			
+            var items = res.getElementsByTagName("item");
+			//alert("items="+items.length);
+			
+			//alert("adassssssss=>>>>="+items[0].firstChild.nodeValue);
+            for(var i=0;i<items.length;i++)
+            {
+               //addRow(items(i).firstChild.nodeValue);
+			   addRow(items[i].firstChild.nodeValue);
+            }
+            setDivStyle();
+         }
+     }
+   }
+function setDivStyle()
+{
+   var suggest = document.getElementById("suggest");
+    suggest.style.border = "#CCE0EB 1px solid";
+    //suggest.style.left = 213;
+    //suggest.style.top = 140;
+   //suggest.style.width = 195;
+    //suggest.style.backgroundColor = "#EEF8FD"
+    document.getElementById("suggest").style.visibility="visible"
+}
+function searchhidden(){
+	document.getElementById("suggest").style.visibility="hidden";
+}
+
+function addRow(item)
+{	
+    var content = document.getElementById("content");
+    var row = document.createElement("tr");
+    var cell = document.createElement("td");
+    cell.appendChild(document.createTextNode(item));
+    cell.onmouseover = function(){this.style.background="#97D0EC"};
+    cell.onmouseout = function(){this.style.background="#EEF8FD"};
+    cell.onclick = function(){
+    document.getElementById("searchKey").value=this.innerHTML;
+    document.getElementById("suggest").style.visibility="hidden"};
+    row.appendChild(cell);
+    content.appendChild(row);
+    
+}
+   $(document).ready(function () {
+	   
+	   
+	   //index-é¡¶é¨æç´¢
+       $(".web_search .search_input span").click(function(){
+          $(this).hide();
+          $(this).prev("input").focus(); 	
+       });
+       $(".web_search .search_input>input").focus(function(){
+           $(this).next("span").hide();
+       }).blur(function(){ 
+          var input = $(this).val();
+          if(input == ''){
+              $(this).next("span").show();   
+          }else{
+              $(this).next("span").hide();
+          }
+       });
+	   //é¡¶é¨æç´¢åç±»
+       $(".search_sort .sort_down").hide();  
+       $(".search_sort").hover(function(){  
+          $(this).children(".sort_down").show();
+       },function(){
+	      $(this).children(".sort_down").hide();
+       }); 
+       //é¦é¡µæ°é»é¼ æ åè¿åé´é
+       $(".column_news .column_news_inner ul li:odd").addClass("mar_l38"); 
+	   $(".column_news .column_news_inner ul li:last").removeClass("pad_b40").addClass("mar_b15"); 
+	   $(".column_news .column_news_inner ul li:last").prev("li").removeClass("pad_b40").addClass("mar_b15"); 
+	   $(".column_news .column_news_inner ul li").hover(function(){
+		   $(this).find(".icon_round_off").removeClass("icon_round_off").addClass("icon_round_on");
+		   $(this).find("dt").css("color","#025fad");
+		   },function(){
+			$(".column_news .column_news_inner ul li").find(".icon_round_on").removeClass("icon_round_on").addClass("icon_round_off"); 
+			$(".column_news .column_news_inner ul li").find("dt").removeAttr("style"); 
+		   });
+	   
+	   //å¾ä¹¦æ¨èæç´¢
+	   $(".h_book_search span").click(function(){
+          $(this).hide();
+          $(this).next("input").focus(); 	
+       });
+       $(".h_book_search input:first").focus(function(){
+           $(this).prev("span").hide();
+       }).blur(function(){ 
+          var input = $(this).val();
+          if(input == ''){
+              $(this).prev("span").show();   
+          }else{
+              $(this).prev("span").hide();
+          }
+       });
+	   
+	   //å¾ä¹¦æ¨èåæ¢
+       $(".web_h_book .h_book_area:first").show();
+       $(".h_book_line .h_book_change p").hover(function(){
+	   $(".h_book_line .h_book_change p").removeClass("active_on").addClass("active_off");
+	   $(".web_h_book .h_book_area").hide();
+	   $(this).removeClass("active_off").addClass("active_on");
+	   var index = $(".h_book_line .h_book_change p").index(this);
+	   var divId = $(".web_h_book .h_book_area");
+	   divId.hide();
+	   $(divId[index]).fadeIn();
+	   },function(){
+		   
+	   });
+	   	   
+	   //ä¾§è¾¹æ 
+	   $(".web_sider ul li").hover(function(){
+		  $(this).removeClass("sider_off").addClass("sider_on");
+		  $(this).children(".layer_sider").show();   
+	   },function(){
+		  $(this).removeClass("sider_on").addClass("sider_off"); 
+		  $(this).children(".layer_sider").hide(); 
+	   });
+	   //go to top
+       $(".web_sider ul li:last").click(function() {
+       $("html, body").animate({ scrollTop: 0 }, 120);
+         })
+       $backToTopFun = function() {
+       var st = $(document).scrollTop(), winh = $(window).height();
+       (st > 200)? $(".web_sider ul li").show(): $(".web_sider ul li").hide();
+	   (st > 200)? $(".web_sider ul li:last").show(): $(".web_sider ul li:last").hide();
+        if (!window.XMLHttpRequest) {
+            $(".web_sider ul li:last").css("top", st + winh - 306);
+        }
+    };
+  $(window).bind("scroll", $backToTopFun); 
+  $backToTopFun();
+	   	  
+   }); 
+</script>
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="#">
+</head>
+<body class="bg_web">
+<SCRIPT language=JavaScript>var ANPC = new Array(),ANC = 0,ANCI = 0;</SCRIPT><SCRIPT language="JavaScript" src="/Advert/inc/adm.js"></SCRIPT><SCRIPT language="JavaScript" event=FSCommand(command,args) for=ADAREAout>	if(document.all) style.display="none";</SCRIPT><script language="javascript">	var fScreen = document.getElementById("fullscreenad");	if (fScreen == null) {		fScreen = document.createElement("div");		fScreen.id = "fullscreenad";		fScreen.align = "center";		fScreen.style.display = "none";	}</script><script language="javascript" src="/Advert/inc/advert_1.js"></script>
+    <!--header beigin-->
+    ï»¿<link ref="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+<script>
+if(location.href.indexOf('ehm.phei.com.cn') != -1){
+	//location.href='http://www.phei.com.cn';
+	alert('æ¬ç«ç¹ç®åä¸ºæµè¯ç«ç¹ï¼è¯·ä¸è¦ä¸åã');
+}
+</script>
+<header>
+        <div class="web_top_wrapper">
+             <p class="top_logo">
+                <a href="#" title="çµå­å·¥ä¸åºçç¤¾æéå¬å¸"><img src="/templates/images/img_logo.jpg" width="225" height="81" /></a>
+             </p>
+             <nav>
+                 <ul>
+                     <li>
+                         <a href="/" title="é¦é¡µ">é¦é¡µ</a>
+                     </li>
+                     <li>
+                         <a href="/gywm/index.shtml">å³äºæç¤¾<i class="i_arr"></i></a>
+                         <p>
+                         <!--EHM_SystemNav?pcid=18&showlocation=0-->
+                  		
+                         <a href="/gywm/cbsjj/2010-11-19/47.shtml">åºçç¤¾ç®ä»</a>
+                  		
+               	   	     
+                  		
+                         <a href="/gywm/szzc/2010-11-19/48.shtml">ç¤¾é¿è´è¾</a>
+                  		
+               	   	     
+                  		
+                         <a href="/gywm/smsh/2010-11-19/49.shtml">ç¤¾åç¤¾å¾½</a>
+                  		
+               	   	     
+                  		
+                         <a href="/gywm/jgsz/2010-11-19/50.shtml">æºæè®¾ç½®</a>
+                  		
+               	   	     
+                  		
+                         <a href="/gywm/gjhz/2010-11-19/39.shtml">å½éåä½</a>
+                  		
+               	   	     
+                  		
+                         <a href="/gywm/qkjs1/2018-10-14/836.shtml">æåä»ç»</a>
+                  		
+               	   	     <!--/EHM_SystemNav-->
+                          
+                         </p>
+                     </li>
+
+                     <li>
+                         <a href="/xwxx/index.shtml">æ°é»ä¸­å¿</a>
+                     </li>
+                     <li>
+                         <a href="/module/goods/wssd_index.jsp" title="ç½ä¸ä¹¦åº">ç½ä¸ä¹¦åº</a>
+                     </li>
+                     <li>
+                         <a href="/module/contribution/wstg_index.jsp" title="ç½ä¸æç¨¿">ç½ä¸æç¨¿</a>
+                     </li>
+                     <!-- 
+                     <li>
+                         <a href="http://drm.hxpress.com.cn/shop/">æ°å­èµæº<i class="i_arr"></i></a>
+                         <p>
+                          <a target="_blank" href="http://www.hxedu.com.cn/" title="">å¨çº¿èµæº</a>
+                          <a target="_blank" href="http://drm.hxpress.com.cn/shop/" title="">çµå­ä¹¦</a>
+                         </p>
+                     </li>
+                      -->
+                     <li>
+                         <a href="/lxwm/wsdz/2018-10-14/854.shtml" title="èç³»æä»¬">èç³»æä»¬<i class="i_arr"></i></a>
+                         <p>
+                          <a href="/lxwm/wsdz/2018-10-14/854.shtml" title="">èç³»æ¹å¼</a>
+                          <a href="/module/zpgl/jobappview.jsp" title="">è¯éè±æ</a>
+                         </p>
+                     </li>
+                 </ul>
+             </nav>
+             <div  id="loginp" class="top_login_after" style="display:none;">
+                <div class="layer_login_after" style="display:none;">
+                     <p><a href="/module/membercenter/hyzx.jsp">ä¼åä¸­å¿</a></p>
+                     <p><a href="/module/membercenter/membertoplogin.jsp?logout=true">éåºç»å½</a></p>
+                </div>
+                <i class="pad_l8r22 login_hover"><a href="/module/membercenter/hyzx.jsp" id="topLoginUsernameHref" title=""></a></i>
+                <i class="pad_l10"><a href="/ens/index.shtml" title="ENGLISH" target="_blank">ENGLISH</a></i>
+             </div>
+             <p id="noLoginP" class="top_reg_login">
+                <i class="pad_l20"><a href="/module/membercenter/memberregister.jsp" title="æ³¨å">æ³¨å</a></i>
+                <i class="pad_l41"><a href="/module/membercenter/memberlogin.jsp" title="ç»å½">ç»å½</a></i>
+                <i class="pad_l16"><a href="/ens/index.shtml" title="ENGLISH" target="_blank">ENGLISH</a></i>
+                
+             </p>
+            
+             
+        </div>
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?661ca74856e211b2aec41a10c215cf52";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+
+jQuery(document).ready(function(){
+	jQuery(".top_login_after").hover(function(){
+			jQuery(this).children(".layer_login_after").show();
+		},function(){
+			jQuery(this).children(".layer_login_after").hide();	
+		})	
+	
+	})
+</script>
+    </header>
+
+    <!--header end-->
+    <!--search beigin-->
+    <section>
+        <div class="web_search">
+         	<script type="text/javascript">
+           	function setGoodType(val){
+           	console.info(val);
+           		jQuery("#goodtype").val(val);
+           		if(val == "ææåç±»" || val ==""){
+           			jQuery("#goodtype").val("");
+           		}else{
+           		}
+           		jQuery("#Show_Category_Name").html(val);
+           		jQuery("#typeSelDiv").hide();
+           	}
+           	function searchsub(){
+           		var search_key = document.getElementById("searchKey");
+				if(search_key.value=='è¯·è¾å¥ä¹¦åãä¹¦å·ãä½èç­å³é®è¯'||search_key.value==""){
+					alert("è¯·è¾å¥å³é®å­æ¥è¯¢");
+				}else{
+					location.href= "/module/goods/searchkey.jsp?searchKey="+encodeURIComponent(search_key.value)+"&goodtype="+jQuery("#goodtype").val();
+					//searchform.submit();
+				}
+           	}
+           	</script>
+           <form name="searchform" id="searchform" method="post" action="/module/goods/searchkey.jsp">
+          
+                   <div class="search_input">
+                        <input  name="searchKey" id="searchKey" onkeyup="suggest()" type="text" /> 
+                        <span>è¯·è¾å¥ä¹¦åãä½èãISBN</span>     
+                   </div>
+                   <div id="suggest" style="position:absolute; left:0px; top:88px; width:610px;font-size:16px;z-index:30;"><table style="width:100%;padding:0 15px;line-height:26px; background:#EEF8FD;">
+											         <tbody id="content" ></tbody>
+											      </table></div>
+                   <div class="search_sort">
+                        <span id="Show_Category_Name"  dd_name="ææåç±»">ææåç±»</span>
+                        <input type="hidden" name="goodtype" id="goodtype" />
+                        <div id="typeSelDiv" class="sort_down">
+                             <a href="javascript:void(0);" onclick="setGoodType('ææåç±»')">
+                                <span id="" dd_name="å¨é¨åç±»">ææåç±»</span>
+                             </a>
+                             <a href="javascript:void(0);" onclick="setGoodType('ç§æ')" dd_name="ç§æ">
+                                <span >ç§æ</span>
+                             </a>
+                             <a href="javascript:void(0);" onclick="setGoodType('æè²')" dd_name="æè²">
+                                <span>æè²</span>
+                             </a>
+                             <a href="javascript:void(0);" onclick="setGoodType('ç»æµç®¡ç')" dd_name="ç»æµç®¡ç">
+                                <span>ç»æµç®¡ç</span>
+                             </a>
+                             <a href="javascript:void(0);" onclick="setGoodType('å°å¿')" dd_name="å°å¿">
+                                <span>å°å¿</span>
+                             </a>
+                             <a href="javascript:void(0);" onclick="setGoodType('å¤§ä¼')" dd_name="å¤§ä¼">
+                                <span>å¤§ä¼</span>
+                             </a>
+                        </div>
+                   </div>
+                   <div class="search_btn">
+                        <input onclick="searchsub()" type="search">
+                   </div>
+             </form>
+        </div>
+    </section>
+    <!--search end-->
+    <!--middle beigin-->
+    <section>
+        <div class="web_foucs">
+             <ul>
+               
+    			  <li title="åè¡èçº¦æç»æµªè´¹"><a href="https://www.phei.com.cn/cylf/index.shtml"><img src="/uploadfiles/index/sytp/1598602449352.jpg" /></a> </li>
+  				 
+    			  <li title="é²ç«é»å»æ"><a href="https://www.phei.com.cn/fyjjz/index.shtml"><img src="/uploadfiles/index/sytp/1582614714465.png" /></a> </li>
+  				 
+    			  <li title="<strong>âä¸å¿åå¿ï¼ç¢è®°ä½¿å½âä¸»é¢æè²</strong>"><a href="https://www.phei.com.cn/bwcx/index.shtml"><img src="/uploadfiles/index/sytp/1573115916384.jpg" /></a> </li>
+  				 
+    			  <li title="æ°æ³å¸ä¸çæ´»åè¡"><a href="https://www.phei.com.cn/mfd/index.shtml"><img src="/uploadfiles/index/sytp/1594978503181.jpg" /></a> </li>
+  				 
+    			  <li title="è¿é¶çå·¨äººè·å¥"><a href="https://www.phei.com.cn/module/goods/wssd_content.jsp?bookid=55099"><img src="/uploadfiles/index/sytp/1589438854106.jpg" /></a> </li>
+  				 
+    			  <li title="åæ"><a href="https://www.phei.com.cn/module/goods/wssd_content.jsp?bookid=55608"><img src="/uploadfiles/index/sytp/1587088646894.jpg" /></a> </li>
+  				 
+                 
+                 
+              </ul>
+              <div class="foucs_btn">
+              
+              </div>
+        </div>
+       <script type="text/javascript">
+			 var total=$(".web_foucs ul").children().length;
+		     var now=0;
+		     function clock()
+		       {
+			     if(now==total -1){
+				     now=0; 
+			     }else{
+				 now=now+1; 
+			     }
+			     for(i=0;i<total;i++){
+				    $(".web_foucs ul li").eq(i).css("display","none");
+				    $(".foucs_btn span").eq(i).css("background","#3d3d3d");
+			     }
+		         $(".web_foucs ul li").eq(now).fadeIn(1000);
+		         $(".foucs_btn span").eq(now).css("background","#ffffff");
+				 
+		       }
+			   /////////
+	 $(document).ready(function() {
+		var total=$(".web_foucs ul li").length;
+		for(i=0;i<total;i++){
+			$(".foucs_btn").append($("<span style='margin-left:" + i*40 + "px'></span>").clone());
+		}
+		$(".web_foucs ul li").eq(0).fadeIn(1000);
+		$(".foucs_btn span").eq(0).css("background","#ffffff");
+		$(".web_foucs ul li,.foucs_btn span").mouseenter(function(){
+			window.clearInterval(int);	
+		});
+		$(".foucs_btn span").mouseenter(function(){
+			if($(this).index()!=now){
+				now=$(this).index()-1;
+				clock();
+			}
+		});
+		var int=self.setInterval("clock()",3000)
+		$(".web_foucs ul li,.web_foucs span").mouseleave(function(){
+			int=self.setInterval("clock()",3000)
+		});
+		
+		
+		});
+			 </script>
+        <!--recommended books begin-->
+        <div class="web_column_line">
+             <div class="column_news">
+                   <p class="column_news_title"><a href="/xwxx/index.shtml"><img src="/templates/images/title_news.jpg" width="123" height="69" /></a></p>
+                   <div class="column_news_inner">
+                        <ul>
+                        
+						 <li class="pad_b40">
+                                <a href="/xwzx/2020-10-01/1070.shtml" title="" target="_blank">
+                                <div class="li_left">
+                                     <span class="icon_round_off"></span>
+                                     <p class="h_news_date">2020-10-01	</p>
+                                     <p><img src="" onerror="this.src='/templates/images/img_no_pic.jpg'" /></p>
+                                </div>
+                                <div class="li_right">
+                                     <dl>
+                                         <dt>å·¥ä¸åä¿¡æ¯åé¨åå¬åå³äºä¸¾å2020å¹´ä¸­å½å½...</dt>
+                                         <dd>éï¼http://www.ptexpo.com.cn/index.html </dd>
+                                     </dl>
+                                </div>
+                                </a>
+                            </li>
+						
+						 <li class="pad_b40">
+                                <a href="/xwzx/2020-10-01/1069.shtml" title="" target="_blank">
+                                <div class="li_left">
+                                     <span class="icon_round_off"></span>
+                                     <p class="h_news_date">2020-10-01	</p>
+                                     <p><img src="/uploadfiles/xwzx/1601559560305.jpg" onerror="this.src='/templates/images/img_no_pic.jpg'" /></p>
+                                </div>
+                                <div class="li_right">
+                                     <dl>
+                                         <dt>éå¢è´¢å¡éç¨æ ¸ç®è½¯ä»¶ç»ä¸å¹³å°ç«äºæ§è°å¤ç»æå¬...</dt>
+                                         <dd> </dd>
+                                     </dl>
+                                </div>
+                                </a>
+                            </li>
+						
+						 <li class="pad_b40">
+                                <a href="/xwzx/2020-07-23/1067.shtml" title="" target="_blank">
+                                <div class="li_left">
+                                     <span class="icon_round_off"></span>
+                                     <p class="h_news_date">2020-07-23	</p>
+                                     <p><img src="/uploadfiles/xwzx/1595495750233.jpg" onerror="this.src='/templates/images/img_no_pic.jpg'" /></p>
+                                </div>
+                                <div class="li_right">
+                                     <dl>
+                                         <dt>å¤§æé¢æ±æ ä¸çº¿éçæââç¤¾é¢å¯¼çææ°é®ç©æµ...</dt>
+                                         <dd>7æ21æ¥ï¼å¨çç­è³æçå¤§æèæ°å°è³ãåäº¬è¿å¥é²æ±æä¹éï¼åå§ä¹¦è®°ãæ»ç»ççä¼ è£ï¼åå§å¯ä¹¦è®°... </dd>
+                                     </dl>
+                                </div>
+                                </a>
+                            </li>
+						
+						 <li class="pad_b40">
+                                <a href="/xwzx/2020-07-21/1066.shtml" title="" target="_blank">
+                                <div class="li_left">
+                                     <span class="icon_round_off"></span>
+                                     <p class="h_news_date">2020-07-21	</p>
+                                     <p><img src="/uploadfiles/xwzx/1595322118324.jpg" onerror="this.src='/templates/images/img_no_pic.jpg'" /></p>
+                                </div>
+                                <div class="li_right">
+                                     <dl>
+                                         <dt>å®ä½å®å¨åºçº¿ ç­ç¢å®å¨é²çº¿ââçµå­å·¥ä¸åºçç¤¾...</dt>
+                                         <dd>2020å¹´ï¼çµå­å·¥ä¸åºçç¤¾æéå¬å¸æ¨å¨è½å®ä¼ä¸å®å¨çäº§ä¸»ä½è´£ä»»ï¼åæå¼æ¬å®å¨åå±çå¿µï¼ææé²... </dd>
+                                     </dl>
+                                </div>
+                                </a>
+                            </li>
+						
+						 <li class="pad_b40">
+                                <a href="/xwzx/2020-07-15/1065.shtml" title="" target="_blank">
+                                <div class="li_left">
+                                     <span class="icon_round_off"></span>
+                                     <p class="h_news_date">2020-07-15	</p>
+                                     <p><img src="/uploadfiles/xwzx/1594775644898.jpg" onerror="this.src='/templates/images/img_no_pic.jpg'" /></p>
+                                </div>
+                                <div class="li_right">
+                                     <dl>
+                                         <dt>æ¦è¯»èæââæ¢ç´¢ææè¥éæ°è·¯å¾</dt>
+                                         <dd>æâç«âæé´ï¼ä¸ºååºæè²é¨âåè¯¾ä¸åå­¦âçå·å¬ï¼æ»¡è¶³å¹¿å¤§èä¸é¢æ ¡å¸çå¯¹é«åè´¨å¨çº¿æ... </dd>
+                                     </dl>
+                                </div>
+                                </a>
+                            </li>
+						
+						 <li class="pad_b40">
+                                <a href="/xwzx/2020-07-10/1064.shtml" title="" target="_blank">
+                                <div class="li_left">
+                                     <span class="icon_round_off"></span>
+                                     <p class="h_news_date">2020-07-10	</p>
+                                     <p><img src="/uploadfiles/xwzx/1594360593767.jpg" onerror="this.src='/templates/images/img_no_pic.jpg'" /></p>
+                                </div>
+                                <div class="li_right">
+                                     <dl>
+                                         <dt>å½âä¸­å½å¥½ä¹¦âä¹ä¸âç´æ­âå¿«è½¦ââçµå­å·¥ä¸åº...</dt>
+                                         <dd>7æ2æ¥æ9ç¹ï¼âæ·å®ç¬¬ä¸ä¸»æ­âèå¨çç´æ­é´ç­é¹éå¡ï¼âä¸é¢ééæ¨èä¸æ¬âä¸­å½å¥½ä¹¦âï¼çµå­å·¥... </dd>
+                                     </dl>
+                                </div>
+                                </a>
+                            </li>
+						
+                           
+                           
+                        </ul>
+                   </div>
+             </div>
+             <div class="column_szzy">
+                  <p class="column_szzy_title"><img src="/templates/images/title_szzy.jpg" width="126" height="69" /></p>
+                  <ul>
+                     <li><a href="http://www.hxedu.com.cn/" class="li_zxds" title="ææéå¥èµæºä¸è½½" target="_blank"></a></li>
+                     <li><a href="https://yd.51zhy.cn" class="li_dzs" title="æä¾1ä¸+ç§çµå­ä¹¦è¯è¯»åè´­ä¹°" target="_blank"></a></li>
+                     <li><a href="https://yx.51zhy.cn" class="li_smxz" title="æä¾100+é¨è¯¾ç¨å¨çº¿å­¦ä¹ " target="_blank"></a></li>
+                     <li><a href="https://yz.51zhy.cn/" class="li_hxjy" title="çµå­ç¤¾æä¸è½»ç¥è¯æå¡åç" target="_blank"></a></li>
+                     <li><a href="https://znzz.51zhy.cn/" class="li_hxdzs" title="æä¾ä¸ä¸ä¸ææ·±åº¦çæ°æ®åºäº§å" target="_blank"></a></li>
+                  </ul>
+             </div>
+             <div style="clear:both;"></div>
+        </div>
+        <!--recommended books end-->
+        <div class="web_adv">
+             <script language="javascript">document.write("<div id='AdNormal_4_" + ANC + "'></div>");</script><script language="javascript">ANPC.push("4");try{document.write(_ADMS_SHOW(4));}catch(e){}</script>
+        </div>
+        <!--recommended books begin-->
+        <div class="web_h_book">
+             <p class="h_book_title">
+                <a href="/module/goods/wssd_index.jsp"><img src="/templates/images/title_books.jpg" width="141" height="69" /></a>
+             </p>
+             <div class="h_book_line"> 
+                  <div class="h_book_change">
+                       <p class="active_on">æ°ä¹¦æ¨è</p>
+                       <p class="active_off">éç¹æ¨è</p>
+                  </div>
+                  <div class="h_book_search">
+                       <form name="temSearchForm" action="/module/goods/searchkey.jsp" method="post">
+                             <span>åç§° / ä½è / ISBN</span>
+                             <input  name="searchKey" type="text" class="h_search_input_1">
+                             <input onclick="document.temSearchForm.submit()" type="button" class="h_search_btn">
+                       </form>
+                  </div>
+             </div>
+             <div class="h_book_area" style="display:none;">
+                  <ul>
+                      <li ng-repeat="data in dataArray['xstj']" data-id="{{$index+1}}">
+                          <p class="h_book_img">
+                             <a target="_blank" href="/module/goods/wssd_content.jsp?bookid={{data.goodId}}" title="{{data.goodName}}"><img src="{{data.goodImage | imgFilter}}" /></a>
+                          </p>
+                          <p class="book_area_title">
+                             <A target="_blank" href="/module/goods/wssd_content.jsp?bookid={{data.goodId}}" title="{{data.goodName}}">{{data.goodName}}</a>
+                          </p>
+                      </li>
+                     
+                  </ul>
+             </div>
+             <div class="h_book_area" style="display:none;">
+                  <ul>
+                      <li ng-repeat="data in dataArray['zdtj']" data-id="{{$index+1}}">
+                          <p class="h_book_img">
+                             <a target="_blank" href="{{data.url}}" title=""><img src="{{data.imgUrl | imgFilter}}" /></a>
+                          </p>
+                          <p class="book_area_title">
+                             <A target="_blank" href="{{data.url}}" title="{{data.name}}">{{data.name}}</a>
+                          </p>
+                      </li>
+                      
+                  </ul>
+             </div>
+             
+
+             <div style=" clear:both;"></div>
+        </div>
+        <!--recommended books end-->
+        <div class="web_adv">
+             <script language="javascript">document.write("<div id='AdNormal_13_" + ANC + "'></div>");</script><script language="javascript">ANPC.push("13");try{document.write(_ADMS_SHOW(13));}catch(e){}</script>
+        </div>
+        <!--our website begin--> 
+        <div class="web_oursite">
+             <p class="link_title">
+                <img src="/templates/images/title_ourwebsite.jpg" width="98" height="69" />
+             </p>
+             <ul>
+                  
+				 <li>
+                     <a href="http://www.hxedu.com.cn" title="åä¿¡æè²èµæºç½" target="_blank">
+                        <img src="/uploadfiles/wzq/1539497515704.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+				 <li>
+                     <a href="https://www.51zhy.cn" title="è¯»âå­¦âæºâç¥" target="_blank">
+                        <img src="/uploadfiles/wzq/1589183311159.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+				 <li>
+                     <a href="https://yd.51zhy.cn" title="æ¦è¯»" target="_blank">
+                        <img src="/uploadfiles/wzq/1539497636012.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+				 <li>
+                     <a href="https://yx.51zhy.cn" title="æ¦å­¦" target="_blank">
+                        <img src="/uploadfiles/wzq/1539497738831.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+				 <li>
+                     <a href="https://znzz.51zhy.cn" title="æ¦æº" target="_blank">
+                        <img src="/uploadfiles/wzq/1539499458126.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+				 <li>
+                     <a href="https://yz.51zhy.cn" title="æ¦ç¥" target="_blank">
+                        <img src="/uploadfiles/wzq/1539499360501.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+				 <li>
+                     <a href="http://www.hxspoc.cn" title="åä¿¡SPOCå¹³å°" target="_blank">
+                        <img src="/uploadfiles/wzq/1563328168127.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+				 <li>
+                     <a href="http://www.broadview.com.cn/book?tab=ebook" title="åæ" target="_blank">
+                        <img src="/uploadfiles/wzq/1539499544488.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+				 <li>
+                     <a href="http://www.cyjjpl.com" title="äº§ä¸ç»æµè¯è®º" target="_blank">
+                        <img src="/uploadfiles/wzq/1589181612815.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+				 <li>
+                     <a href="http://www.ydyliit.com" title="ä¸å¸¦ä¸è·¯" target="_blank">
+                        <img src="/uploadfiles/wzq/1539498402082.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+				 <li>
+                     <a href="https://www.bastcn.com" title="å¤§æ°æ®" target="_blank">
+                        <img src="/uploadfiles/wzq/1589505091214.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+				 <li>
+                     <a href="https://ydylmap.phei.com.cn" title="ä¸å¸¦ä¸è·¯äº§ä¸å°å¾èµæºå¹³å°" target="_blank">
+                        <img src="/uploadfiles/wzq/1589505674484.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+				 <li>
+                     <a href="https://www.icdata.com.cn/" title="éæçµè·¯æèèµæ°æ®åº" target="_blank">
+                        <img src="/uploadfiles/wzq/1589505699912.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+             </ul>
+             <div style=" clear:both"></div>
+        </div> 
+        <!--our website end--> 
+        <!--link begin--> 
+        <div class="web_link">
+             <p class="link_title">
+                <img src="/templates/images/title_link.jpg" width="87" height="69" />
+             </p>
+             <ul>
+             
+				 <li>
+                     <a href="http://www.miit.gov.cn/" title="å·¥ä¿¡é¨" target="_blank">
+                        <img src="/uploadfiles/yqlj/1539500700356.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+				 <li>
+                     <a href="http://www.sapprft.gov.cn/" title="æ»å±" target="_blank">
+                        <img src="/uploadfiles/yqlj/1539500549722.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+				 <li>
+                     <a href="http://www.ciitp.com.cn" title="éå¢" target="_blank">
+                        <img src="/uploadfiles/yqlj/1539500474093.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+				 <li>
+                     <a href="http://www.ptpress.com.cn/" title="äººé®" target="_blank">
+                        <img src="/uploadfiles/yqlj/1539500364160.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+				 <li>
+                     <a href="http://www.winxuan.com" title="æè½©ç½" target="_blank">
+                        <img src="/uploadfiles/yqlj/1319436413847.gif" width="185" height="83" />
+                     </a>
+                 </li>
+			
+				 <li>
+                     <a href="http://www.ncie.gov.cn/" title="å½ä¿¡ç¥å·ç§ææè²" target="_blank">
+                        <img src="/uploadfiles/yqlj/1539500298453.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+				 <li>
+                     <a href="http://store.dangdang.com/299" title="çµå­ç¤¾å½å½èªè¥åº" target="_blank">
+                        <img src="/uploadfiles/yqlj/1539500250592.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+				 <li>
+                     <a href="http://www.jd.com" title="äº¬ä¸ç½" target="_blank">
+                        <img src="/uploadfiles/yqlj/1539500148022.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+				 <li>
+                     <a href="http://www.amazon.cn/" title="äºé©¬é" target="_blank">
+                        <img src="/uploadfiles/yqlj/1539500202029.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+				 <li>
+                     <a href="http://www.xuexiph.cn" title="å­¦ä¹ åºçç¤¾" target="_blank">
+                        <img src="/uploadfiles/yqlj/1539500021739.jpg" width="185" height="83" />
+                     </a>
+                 </li>
+			
+                
+             </ul>
+             <div style=" clear:both"></div>
+        </div> 
+        <!--link end-->  
+    </section>
+    <!--middle end-->
+    <!--bottom menu  beigin-->
+    ï»¿<section class="web_bottom">
+        <div class="web_bottom_inner">
+             <div class="web_bottom_inner_left">
+                  <dl>
+                      <dt>å³äºæç¤¾</dt>
+                      <dd>
+                      <!--EHM_SystemNav?pcid=18&showlocation=0-->
+                  		
+                         <a href="/gywm/cbsjj/2010-11-19/47.shtml">åºçç¤¾ç®ä»</a>
+                  		
+               	   	     
+                  		
+                         <a href="/gywm/szzc/2010-11-19/48.shtml">ç¤¾é¿è´è¾</a>
+                  		
+               	   	     
+                  		
+                         <a href="/gywm/smsh/2010-11-19/49.shtml">ç¤¾åç¤¾å¾½</a>
+                  		
+               	   	     
+                  		
+                         <a href="/gywm/jgsz/2010-11-19/50.shtml">æºæè®¾ç½®</a>
+                  		
+               	   	     
+                  		
+                         <a href="/gywm/gjhz/2010-11-19/39.shtml">å½éåä½</a>
+                  		
+               	   	     
+                  		
+                         <a href="/gywm/qkjs1/2018-10-14/836.shtml">æåä»ç»</a>
+                  		
+               	   	     <!--/EHM_SystemNav-->
+               	   	     <!--EHM_SystemNav?pcid=18&showlocation=1--><!--/EHM_SystemNav-->
+                      </dd>
+                  </dl>
+                  <dl>
+                      <dt>è¯»èæå¡</dt>
+                      <dd>
+                       
+                        <a href="/xssl/gszn/2011-07-28/336.shtml" title="">è´­ä¹¦æå</a>
+                       
+                        <a href="/xssl/cpfw/2011-07-28/334.shtml" title="">äº§åèå´</a>
+                       
+                        <a href="/xssl/wzjs/2011-07-25/330.shtml" title="">ç½ç«ä»ç»</a>
+                       
+                      </dd>
+                  </dl>
+                  <dl>
+                      <dt>ä½è¯èæå¡</dt>
+                      <dd>
+                          
+                        <a href="/module/contribution/wstg_index.jsp" title="">ç½ä¸æç¨¿</a>
+                       
+                        <a href="/wstg/csfx/index.shtml" title="">åºä¹¦æ¹å</a>
+                       
+                        <a href="/wstg/bjbm/index.shtml" title="">ç¼è¾é¨é¨</a>
+                       
+                        <a href="/wstg/zyzxz/index.shtml" title="">ä½è¯èé¡»ç¥</a>
+                       
+                        <a href="/module/membercenter/hyzx.jsp" title="">æ¨çèä½</a>
+                       
+                      </dd>
+                  </dl>
+                  <dl>
+                      <dt>æ°å­èµæº</dt>
+                      <dd>
+                          
+                        <a href="http://www.hxedu.com.cn" title="">åä¿¡æè²èµæºç½</a>
+                       
+                        <a href="https://yd.51zhy.cn/" title="">æ¦è¯»</a>
+                       
+                        <a href="https://yx.51zhy.cn/" title="">æ¦å­¦</a>
+                       
+                        <a href="https://yz.51zhy.cn" title="">æ¦ç¥</a>
+                       
+                        <a href="https://znzz.51zhy.cn" title="">æ¦æº</a>
+                       
+                      </dd>
+                  </dl>
+                  <dl>
+                      <dt>èç³»æä»¬</dt>
+                      <dd>
+                          
+                        <a href="/lxwm/wsdz/2018-10-14/854.shtml" title="">èç³»æ¹å¼</a>
+                       
+                        <a href="/module/zpgl/jobappview.jsp" title="">è¯éè±æ</a>
+                       
+                      </dd>
+                  </dl>
+             </div>
+             <div class="web_bottom_inner_right">
+                  <p>
+                      <span class="bg_visit">å³æ³¨æä»¬&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank"  href="/module/goods/smxz.jsp"><font size="4">ä¹¦ç®ä¸è½½</font></a>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="https://mp.weixin.qq.com/s?__biz=MjM5OTEzMjg3Mw==&mid=212390993&idx=1&sn=f5b3fb3097af79ce5fcce64e34826cb0&chksm=2f9c5ff718ebd6e14a8cda34ea8f310d5696da3cddbeccb4c46bdec607f28afd96ad42df48a5&mpshare=1&scene=1&srcid=12278jdXq2Umf05cTGLL9Dro#rd">å¾®ä¿¡ç©éµ</a></span> 
+                  </p>
+                  <p>
+                  	<a id="erweima"></a>
+                     <a href="https://dzgycbs.tmall.com/shop/view_shop.htm?spm=a220m.1000862.1000730.2.67db3d8ctVzbmz&user_number_id=1932014659&rn=f10e85f71f9f4ac1f4082e951efc341f" target="_blank"><img src="/templates/images/img_tmall.jpg" width="108" height="108" /></a>
+                     <img src="/templates/images/img_ewm_weibo.jpg" width="108" height="126" />
+                     <img src="/templates/images/img_ewm_weixin.jpg" width="108" height="126" />
+                  </p>
+             </div>   
+        </div>
+        <div style=" clear:both"></div>
+    </section>
+    <!--bottom menu beigin-->
+    <!--footer beigin-->
+    <footer>
+        <div class="web_footer">
+             <span>çµå­å·¥ä¸åºçç¤¾æéå¬å¸å°åï¼åäº¬å¸ä¸å¯¿è·¯åå£éå®¶æ288å·åä¿¡å¤§å¦</span></br>
+<span>çæææ(C)2017çµå­å·¥ä¸åºçç¤¾æéå¬å¸</span><span><a href="http://www.beian.miit.gov.cn" target="_blank">äº¬ICPå¤11030724</a></span>
+<span><a target="_blank" href="/jyxkz.jpg">åºçç©ç»è¥è®¸å¯è¯ï¼æ°åºåäº¬æ¹å­ç¬¬ç130001å·</span><span><a target="_blank" href="/yyzz.jpg">è¥ä¸æ§ç§ï¼91110000400001942G</span></br><span><a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010602100307"><img src="/batb.png"/>äº¬å¬ç½å®å¤ 11010602100307å·</a></span>
+</div>
+		 
+    </footer>
+    <!--footer beigin-->
+  
+ <script src="/templates/javascript/public.js" type="text/javascript"></script>
+ <script src="/templates/javascript/imageSrcConvert.js" type="text/javascript"></script>
+
+    <!--bottom menu end-->
+     <div class="web_sider">
+         <ul>
+             <li class="sider_off">
+                 <a href="/lxwm/wsdz/2018-01-24/817.shtml" class="icon_qq"></a>
+                 <div class="layer_sider layer_qq">
+                      <a href="#" target="_blank">
+                         <img src="images/img_qq.png" width="189" height="85" />
+                      </a>
+                 </div>
+             </li>
+             <li class="sider_off">
+                 <a href="/module/zpgl/jobappview.jsp" class="icon_message"></a>
+                 <div class="layer_sider layer_tougao">
+                      <a href="#" target="_blank">
+                         <img src="images/img_liuyan.png" width="189" height="85" />
+                      </a>
+                 </div>
+             </li>
+             <li class="sider_off">
+                 <a href="#erweima" class="icon_erweima"></a>
+                 <div class="layer_sider layer_erweima">
+                      <a href="#erweima" target="_blank">
+                         <img src="images/img_erweima.png" width="189" height="170" />
+                      </a>
+                 </div>
+             </li>
+             <li class="sider_off">
+                 <a href="#" class="icon_top"></a>
+             </li>
+         </ul>
+    </div>
+
+<script>try{document.write(_ADMS_SHOW());}catch(e){}</script>
+ <script src="/templates/js/index.js" type="text/javascript"></script>
+ <div style="display:none;">
+ ï»¿<section class="web_book_bottom">
+        <div class="web_book_bottom_inner">
+             <div class="web_book_bottom_innerleft">
+                   <dl>
+                      <dt>å³äºæç¤¾</dt>
+                      <dd>
+                      <!--EHM_SystemNav?pcid=18&showlocation=0-->
+                  		
+                         <a href="/gywm/cbsjj/2010-11-19/47.shtml">åºçç¤¾ç®ä»</a>
+                  		
+               	   	     
+                  		
+                         <a href="/gywm/szzc/2010-11-19/48.shtml">ç¤¾é¿è´è¾</a>
+                  		
+               	   	     
+                  		
+                         <a href="/gywm/smsh/2010-11-19/49.shtml">ç¤¾åç¤¾å¾½</a>
+                  		
+               	   	     
+                  		
+                         <a href="/gywm/jgsz/2010-11-19/50.shtml">æºæè®¾ç½®</a>
+                  		
+               	   	     
+                  		
+                         <a href="/gywm/gjhz/2010-11-19/39.shtml">å½éåä½</a>
+                  		
+               	   	     
+                  		
+                         <a href="/gywm/qkjs1/2018-10-14/836.shtml">æåä»ç»</a>
+                  		
+               	   	     <!--/EHM_SystemNav-->
+               	   	     <!--EHM_SystemNav?pcid=18&showlocation=1--><!--/EHM_SystemNav-->
+                      </dd>
+                  </dl>
+                  <dl>
+                      <dt>è¯»èæå¡</dt>
+                      <dd>
+                       
+                        <a href="/xssl/gszn/2011-07-28/336.shtml" title="">è´­ä¹¦æå</a>
+                       
+                        <a href="/xssl/cpfw/2011-07-28/334.shtml" title="">äº§åèå´</a>
+                       
+                        <a href="/xssl/wzjs/2011-07-25/330.shtml" title="">ç½ç«ä»ç»</a>
+                       
+                      </dd>
+                  </dl>
+                  <dl>
+                      <dt>ä½è¯èæå¡</dt>
+                      <dd>
+                          
+                        <a href="/module/contribution/wstg_index.jsp" title="">ç½ä¸æç¨¿</a>
+                       
+                        <a href="/wstg/csfx/index.shtml" title="">åºä¹¦æ¹å</a>
+                       
+                        <a href="/wstg/bjbm/index.shtml" title="">ç¼è¾é¨é¨</a>
+                       
+                        <a href="/wstg/zyzxz/index.shtml" title="">ä½è¯èé¡»ç¥</a>
+                       
+                        <a href="/module/membercenter/hyzx.jsp" title="">æ¨çèä½</a>
+                       
+                      </dd>
+                  </dl>
+                  <dl>
+                      <dt>æ°å­èµæº</dt>
+                      <dd>
+                          
+                        <a href="http://www.hxedu.com.cn" title="">åä¿¡æè²èµæºç½</a>
+                       
+                        <a href="https://yd.51zhy.cn/" title="">æ¦è¯»</a>
+                       
+                        <a href="https://yx.51zhy.cn/" title="">æ¦å­¦</a>
+                       
+                        <a href="https://yz.51zhy.cn" title="">æ¦ç¥</a>
+                       
+                        <a href="https://znzz.51zhy.cn" title="">æ¦æº</a>
+                       
+                      </dd>
+                  </dl>
+                  <dl>
+                      <dt>èç³»æä»¬</dt>
+                      <dd>
+                          
+                        <a href="/lxwm/wsdz/2018-10-14/854.shtml" title="">èç³»æ¹å¼</a>
+                       
+                        <a href="/module/zpgl/jobappview.jsp" title="">è¯éè±æ</a>
+                       
+                      </dd>
+                  </dl>
+             </div>
+             <div class="web_book_bottom_innerright">
+                  <p>
+                      <span class="bg_visit">å³æ³¨æä»¬&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="/module/goods/smxz.jsp">ä¹¦ç®ä¸è½½</a>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="https://mp.weixin.qq.com/s?__biz=MjM5OTEzMjg3Mw==&mid=212390993&idx=1&sn=f5b3fb3097af79ce5fcce64e34826cb0&chksm=2f9c5ff718ebd6e14a8cda34ea8f310d5696da3cddbeccb4c46bdec607f28afd96ad42df48a5&mpshare=1&scene=1&srcid=12278jdXq2Umf05cTGLL9Dro#rd">å¾®ä¿¡ç©éµ</a></span> 
+                  </p>
+                  <p>
+                     <a href="https://dzgycbs.tmall.com/shop/view_shop.htm?spm=a220m.1000862.1000730.2.67db3d8ctVzbmz&user_number_id=1932014659&rn=f10e85f71f9f4ac1f4082e951efc341f" target="_blank"><img src="/templates/images/img_tmall.jpg" width="108" height="108" /></a>
+                     <img src="/templates/images/img_ewm_weibo.jpg" width="108" height="126" />
+                     <img src="/templates/images/img_ewm_weixin.jpg" width="108" height="126" />
+                  </p>
+             </div>   
+        </div>
+        <div style=" clear:both"></div>
+    </section>
+    <!--bottom menu end-->
+    <!--footer beigin-->
+    <footer>
+        <div class="web_book_footer">
+             <span>çµå­å·¥ä¸åºçç¤¾å°åï¼åäº¬å¸ä¸å¯¿è·¯åå£éå®¶æ288å·åä¿¡å¤§å¦</span></br>
+<span>çæææ(C)2017çµå­å·¥ä¸åºçç¤¾</span><span><a href="http://www.beian.miit.gov.cn/" target="_blank">äº¬ICPå¤11030724</a></span>
+<span>åºçç©ç»è¥è®¸å¯è¯ï¼æ°åºåäº¬æ¹å­ç¬¬ç130001å·</span>
+        </div>
+    </footer>
+     <script src="/templates/javascript/imageSrcConvert.js" type="text/javascript"></script>
+
+
+</div>
+<script>
+function isMobile() {
+    var userAgentInfo = navigator.userAgent;
+
+    var mobileAgents = [ "Android", "iPhone", "SymbianOS", "Windows Phone", "iPad","iPod"];
+
+    var mobile_flag = false;
+
+    //æ ¹æ®userAgentå¤æ­æ¯å¦æ¯ææº
+    for (var v = 0; v < mobileAgents.length; v++) {
+        if (userAgentInfo.indexOf(mobileAgents[v]) > 0) {
+            mobile_flag = true;
+            break;
+        }
+    }
+
+     var screen_width = window.screen.width;
+     var screen_height = window.screen.height;    
+
+     //æ ¹æ®å±å¹åè¾¨çå¤æ­æ¯å¦æ¯ææº
+     if(screen_width < 500 && screen_height < 800){
+         mobile_flag = true;
+     }
+
+     return mobile_flag;
+}
+
+if(isMobile()){
+	location.href="/module/wap/";
+}
+</script>
+<script type="text/javascript">    
+
+    document.onkeydown=keyDownSearch;
+    
+    function keyDownSearch(e) {  
+        // å¼å®¹FFåIEåOpera  
+        var theEvent = e || window.event;  
+        var code = theEvent.keyCode || theEvent.which || theEvent.charCode;  
+        if (code == 13) {  
+        	searchsub();
+           // console.info(code);
+            return;  
+        }  
+        return;  
+    }
+</script>
+</body>
+</html>
