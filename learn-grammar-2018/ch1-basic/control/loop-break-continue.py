@@ -8,8 +8,7 @@
 # @License: MIT
 
 
-
-#!/usr/bin/env python
+# !/usr/bin/env python
 
 
 # break语句

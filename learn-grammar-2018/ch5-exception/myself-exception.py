@@ -5,6 +5,7 @@ class MyError(Exception):
     def __str__(self):
         return repr(self.value)
 
+
 try:
     raise MyError(2 * 2)
 except MyError as e:

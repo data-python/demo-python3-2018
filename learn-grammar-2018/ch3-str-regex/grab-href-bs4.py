@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import re
+
 # with open('data.html', 'r', encoding='utf-8') as f:
 #     bs = BeautifulSoup(f.read(), 'html5lib')
 #     div_lst = bs.find_all('div', attrs={'style': 'width: 730px;'
@@ -17,7 +18,7 @@ import re
 
 
 with open('data.html', 'r', encoding='utf-8') as f:
-    bs = BeautifulSoup(f.read(),'html5lib')
+    bs = BeautifulSoup(f.read(), 'html5lib')
     div_lst = bs.find_all('div', attrs={'style': re.compile('width:730px.*')})
 
     for div in div_lst:

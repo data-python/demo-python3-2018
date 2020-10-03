@@ -8,10 +8,9 @@
 # @License: MIT
 
 
+# !/usr/bin/python3
 
-#!/usr/bin/python3
-
-sites = ["Baidu", "Google","Runoob","Taobao"]
+sites = ["Baidu", "Google", "Runoob", "Taobao"]
 for site in sites:
     if site == "Runoob":
         print("菜鸟教程!")

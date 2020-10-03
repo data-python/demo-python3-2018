@@ -7,11 +7,11 @@
 # @Last modified time: 2017-03-13T12:25:10+08:00
 # @License: MIT
 
-#!/usr/bin/python3
+# !/usr/bin/python3
 
 # 该实例演示了数字猜谜游戏
 number = 7
-guess = -1 # 全局
+guess = -1  # 全局
 print("数字猜谜游戏!")
 
 # 注意终止条件

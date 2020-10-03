@@ -13,8 +13,9 @@ print(dict[2])
 
 # 键值
 print(tinydict)
-print(tinydict.keys())   # 输出所有键
+print(tinydict.keys())  # 输出所有键
 print(tinydict.values())  # 输出所有值
 
 # 改变字典的方法
-tinydict.clear(); print(tinydict)
+tinydict.clear();
+print(tinydict)

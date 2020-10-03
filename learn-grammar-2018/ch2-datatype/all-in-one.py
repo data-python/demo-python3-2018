@@ -1,9 +1,9 @@
 import requests
 
 urls_dict = {
-    '电子工业出版社' : 'http://www.phei.com.cn/',
-    '在线资源' : "http://www.phei.com.cn/module/zygl/zxzyindex.jsp",
-    'xyz' : 'www.phei.com.cn'
+    '电子工业出版社': 'http://www.phei.com.cn/',
+    '在线资源': "http://www.phei.com.cn/module/zygl/zxzyindex.jsp",
+    'xyz': 'www.phei.com.cn'
 }
 
 urls_lst = [
@@ -33,7 +33,7 @@ for ind, name in enumerate(urls_dict.keys()):
 for u in crawled_urls_for_dict:
     print(u)
 
-print("-"*60)
+print("-" * 60)
 
 # 列表抓取
 crawled_urls_for_list = set()

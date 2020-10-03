@@ -13,7 +13,6 @@ print("hello")
 # print "python" # 使用python2语法会报错
 
 
-
 # 声名
 counter = 100
 miles = 1000.0  # 浮点型变量
@@ -22,21 +21,18 @@ name = "runoob"
 print(counter)
 print(miles)
 print(name)
-print(counter, miles, name) # 以空格间隔
-
-
+print(counter, miles, name)  # 以空格间隔
 
 # 多个变量赋值
 a, b, c = 1, 2, "runoob"
-print(a); print(b); print(c);
-
-
+print(a);
+print(b);
+print(c);
 
 # 输出类型
-a, b, c, d = 20, 5.5, True, 4+3j
+a, b, c, d = 20, 5.5, True, 4 + 3j
 print(type(a), type(b), type(c), type(d))
 # <class 'int'> <class 'float'> <class 'bool'> <class 'complex'>
-
 
 
 # 删除
